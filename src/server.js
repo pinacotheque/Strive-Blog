@@ -4,6 +4,10 @@ import cors from "cors";
 
 import authorsRouter from "./authors/index.js";
 
+import {notFound, forbidden, catchAllErrorHandler} from './errorHandlers.js'
+
+import blogsRouter from './blogs/index.js'
+
 const server = express();
 
 
@@ -12,6 +16,10 @@ const port = 3001;
 server.use(cors());
 server.use(express.json());
 
+server.use(notFound)
+server.use(forbidden)
+server.use(catchAllErrorHandler)
+server.use("/blogs", blogsRouter)
 
 
 server.use("/authors", authorsRouter);
