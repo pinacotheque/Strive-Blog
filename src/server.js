@@ -11,7 +11,9 @@ import blogsRouter from './blogs/index.js'
 const server = express();
 
 
-const port = 3001;
+const port =  process.env.PORT 
+
+// console.log("DB CONNECTION STRING: ", process.env.MYDBCONNECTIONSTRING)
 
 server.use(cors());
 server.use(express.json());

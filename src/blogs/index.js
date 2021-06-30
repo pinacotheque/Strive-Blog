@@ -125,7 +125,9 @@ router.delete("/:id", async (req, res, next) => {
       (blog) => blog.id !== req.params.id
     );
     fs.writeFileSync(blogsFilePath, JSON.stringify(fileAsJSONArray));
-    res.status(204).send();
+    res.status(204).send({ message: `blog with ${req.params.id} is deleted!` });
+    
+
   } catch (error) {
     res.send(500).send({ message: error.message });
   }
