@@ -18,7 +18,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = dirname(__filename);
 
-const blogsFilePath = path.join(__dirname, "blogs.json");
+const blogsFilePath = path.join(__dirname, "../data/blogs.json");
 
 const router = express.Router();
 
