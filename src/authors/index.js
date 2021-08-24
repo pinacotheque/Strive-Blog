@@ -1,20 +1,47 @@
 import express from "express";
-
-import fs from "fs";
 import mongoose from 'mongoose'
-import uniqid from "uniqid";
 
-import path, { dirname } from "path";
+const authorsRouter = express.Router ()
 
-import { fileURLToPath } from "url";
+authorsRouter.post("/register", async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
+authorsRouter.get("/", async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
+authorsRouter.get("/:authorId", async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
+authorsRouter.put("/:authorId", async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
+authorsRouter.delete("/:authorId", async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const authorsFilePath = path.join(__dirname, "authors.json");
-const router = express.Router();
-
+//*******************************************//
 // get all authors
-router.get("/", async (req, res, next) => {
+authorsRouter.get("/", async (req, res, next) => {
   try {
     const fileAsBuffer = fs.readFileSync(authorsFilePath);
     const fileAsString = fileAsBuffer.toString();
@@ -26,7 +53,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // create  author
-router.post("/register", async (req, res, next) => {
+authorsRouter.post("/register", async (req, res, next) => {
   try {
     const { name, surname, email, dateOfBirth } = req.body;
 
@@ -58,7 +85,7 @@ router.post("/register", async (req, res, next) => {
 });
 
 // get single authors
-router.get("/:id", async (req, res, next) => {
+authorsRouter.get("/:id", async (req, res, next) => {
   try {
     const fileAsBuffer = fs.readFileSync(authorsFilePath);
 
@@ -81,7 +108,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // delete  author
-router.delete("/:id", async (req, res, next) => {
+authorsRouter.delete("/:id", async (req, res, next) => {
   try {
     const fileAsBuffer = fs.readFileSync(authorsFilePath);
 
@@ -108,7 +135,7 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 //  update author
-router.put("/:id", async (req, res, next) => {
+authorsRouter.put("/:id", async (req, res, next) => {
   try {
     const fileAsBuffer = fs.readFileSync(authorsFilePath);
 
@@ -140,4 +167,4 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-export default router;
+export default authorsRouter;
