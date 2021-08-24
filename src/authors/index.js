@@ -1,7 +1,7 @@
 import express from "express";
 
 import fs from "fs";
-
+import mongoose from 'mongoose'
 import uniqid from "uniqid";
 
 import path, { dirname } from "path";
@@ -9,11 +9,8 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
-
 const __dirname = dirname(__filename);
-
 const authorsFilePath = path.join(__dirname, "authors.json");
-
 const router = express.Router();
 
 // get all authors
@@ -29,7 +26,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // create  author
-router.post("/", async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   try {
     const { name, surname, email, dateOfBirth } = req.body;
 
