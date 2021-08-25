@@ -10,3 +10,5 @@ const AuthorSchema = new Schema({
     password: { type: String, required: true },
     role: { type: String, required: true, enum: ["Admin", "User"], default: "Author" },
   })
+
+  export default model("Author", AuthorSchema)
