@@ -3,8 +3,9 @@ import listEndpoints from "express-list-endpoints";
 import cors from "cors";
 
 import authorsRouter from "./authors/index.js";
+import authRouter from "./auth/index.js";
 
-import {notFound, forbidden, catchAllErrorHandler} from './errorHandlers.js'
+import { notFound, forbidden, catchAllErrorHandler } from './errorHandlers.js'
 
 import blogsRouter from './blogs/index.js'
 import mongoose from 'mongoose'
@@ -12,7 +13,7 @@ import mongoose from 'mongoose'
 const server = express();
 
 
-const port =  process.env.PORT 
+const port = process.env.PORT
 
 // console.log("DB CONNECTION STRING: ", process.env.MYDBCONNECTIONSTRING)
 mongoose.connect(process.env.MONGO_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -20,13 +21,14 @@ mongoose.connect(process.env.MONGO_CONNECTION, { useNewUrlParser: true, useUnifi
 server.use(cors());
 server.use(express.json());
 
+
+server.use("/blogs", blogsRouter)
+server.use("/auth", authRouter)
+server.use("/authors", authorsRouter);
+
 server.use(notFound)
 server.use(forbidden)
 server.use(catchAllErrorHandler)
-server.use("/blogs", blogsRouter)
-
-
-server.use("/authors", authorsRouter);
 
 console.table(listEndpoints(server))
 
